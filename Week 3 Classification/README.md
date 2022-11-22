@@ -4,7 +4,7 @@ BINARY CLASSIFICATION
 CHURN PREDICTION
 -
 
-$ g(x_i) ≈ y_i $
+$g(x_i) ≈ y_i$
 
 Target variable -> $y_i$
 Feature vector describing the ith customer -> $x_i$
@@ -16,7 +16,7 @@ $y_i \in \{0, 1\}$
 
 LIKELIHOOD OF CHURN
 -
-$ g(x_i)$ output is 0, 1
+$g(x_i)$ output is 0, 1
 
 |CUSTOMER|a|b|c|d|e|<-__X__|
 |--------|-|-|-|-|-|-|
