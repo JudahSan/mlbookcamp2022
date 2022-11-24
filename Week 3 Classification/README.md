@@ -26,7 +26,7 @@ Data preparation
 -
 
 - Download data
-- View dat
+- View data
 - Make column names and values look uniform
 
 ```py
