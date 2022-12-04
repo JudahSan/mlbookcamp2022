@@ -49,3 +49,14 @@ for c in categorical_columns:
     df.churn = (df.churn == 'yes').astype(int)
     ```
     
+# TO:DO
+5. risk
+6. mutual-info
+7. correlation
+8. one hot encoding
+9. logistic regression
+10. training log reg
+11. log reg interpretation
+12. using log regresion
+13. summary
+14. more exploration
