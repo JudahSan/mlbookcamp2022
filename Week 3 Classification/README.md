@@ -67,7 +67,62 @@ RISK = $\frac{GROUP}{GLOBAL}$
 - `<1` - More likely to churn
 - `>1` - Less likely to churn
 
-# TO:DO
+Feture Importance(def)
+-
+
+Feature Importance refers to techniques that calculate a score for all the input features for a given model — the scores simply represent the “importance” of each feature. A higher score means that the specific feature will have a larger effect on the model that is being used to predict a certain variable.
+
+Why is Feature Importance so Useful?
+Feature Importance is extremely useful for the following reasons:
+
+1. Data Understanding.
+Building a model is one thing, but understanding the data that goes into the model is another. Like a correlation matrix, feature importance allows you to understand the relationship between the features and the target variable. It also helps you understand what features are irrelevant for the model.
+
+2. Model Improvement.
+When training your model, you can use the scores calculated from feature importance to reduce the dimensionality of the model. The higher scores are usually kept and the lower scores are deleted as they are not important for the model. This not only makes the model simpler but also speeds up the model’s working, ultimately improving the performance of the model.
+
+3. Model Interpretability.
+Feature Importance is also useful for interpreting and communicating your model to other stakeholders. By calculating scores for each feature, you can determine which features attribute the most to the predictive power of your model.
+
+Math Behind Feature Importance(Gini importance and Permutation feature importance.)
+-
+
+Gini Importance
+-
+
+In the Scikit-learn, Gini importance is used to calculate the node impurity and feature importance is basically a reduction in the impurity of a node weighted by the number of samples that are reaching that node from the total number of samples. This is known as node probability. Let us suppose we have a tree with two child nodes, the equation we have is:
+
+$ n_{ij} = w_jC_j - w_{left(j)}C_{left(j)} - w_{right(j)}C_{right(j)} $
+
+Here we have:
+
+- $n_{ij}$ = node j importance
+- $w_j$ = weighted number of samples reaching node j
+- $C_j$ = the impurity value of node j
+- $left_{(j)}$ = child node on left of node j
+- $right_{(j)}$ = child node on right of node j
+
+This equation gives us the importance of a node j which is used to calculate the feature importance for every decision tree. A single feature can be used in the different branches of the tree. Thus, we calculate the feature importance as follows.
+
+$$
+fi_i = \frac{\sum_j:{node \ j  \ splits \ on \ feature \ i} \ n_{ij}}{\sum_j \in {all \ nodes} \ n_{ij}}
+$$
+
+The features are normalized against the sum of all feature values present in the tree and after dividing it with the total number of trees in our random forest, we get the overall feature importance. With this, you can get a better grasp of the feature importance in random forests.
+
+Permutation Feature Importance
+-
+
+The idea behind permutation feature importance is simple. The feature importance is calculated by noticing the increase or decrease in error when we permute the values of a feature. If permuting the values causes a huge change in the error, it means the feature is important for our model. The best thing about this method is that it can be applied to every machine learning model. Its approach is model agnostic which gives you a lot of freedom. There are no complex mathematical formulas behind it. The permutation feature importance is based on an algorithm that works as follows.
+<br>
+
+1. Calculate the mean squared error with the original values
+2. Shuffle the values for the features and make predictions
+3. Calculate the mean squared error with the shuffled values
+4. Compare the difference between them
+5. Sort the differences in descending order to get features with most to least importance
+
+# TO:DO<!-- Add mutual information notes to note book -->
 5. risk
 6. mutual-info
 7. correlation
