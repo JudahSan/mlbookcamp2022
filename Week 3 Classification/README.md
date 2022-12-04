@@ -49,6 +49,24 @@ for c in categorical_columns:
     df.churn = (df.churn == 'yes').astype(int)
     ```
     
+Feature importance
+=
+
+1. Difference
+-
+
+`GLOBAL - GROUP`
+
+- `<0` - More likely to churn
+- `>0` - Less likely to churn
+
+2. Risk Ratio
+
+RISK = $\frac{GROUP}{GLOBAL}$
+
+- `<1` - More likely to churn
+- `>1` - Less likely to churn
+
 # TO:DO
 5. risk
 6. mutual-info
