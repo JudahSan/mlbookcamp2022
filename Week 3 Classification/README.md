@@ -122,6 +122,106 @@ The idea behind permutation feature importance is simple. The feature importance
 4. Compare the difference between them
 5. Sort the differences in descending order to get features with most to least importance
 
+
+Feature Importance in Python
+-
+
+In this section, we’ll create a random forest model using the [Boston dataset](https://www.kaggle.com/code/prasadperera/the-boston-housing-dataset).
+<br>
+First, we’ll import all the required libraries and our dataset.
+
+```py
+import numpy as np
+import pandas as pd
+from sklearn.datasets import load_boston
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.inspection import permutation_importance
+from matplotlib import pyplot as plt
+```
+
+The next step is to load the dataset and split it into a test and training set.
+
+```py
+
+boston = load_boston()
+X = pd.DataFrame(boston.data, columns=boston.feature_names)
+y = boston.target
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42)
+```
+
+Next, we’ll create the random forest model.
+
+```pg
+rf = RandomForestRegressor(n_estimators=150)
+rf.fit(X_train, y_train)
+```
+
+Once the model is created, we can conduct feature importance and plot it on a graph to interpret the results easily.
+
+```py
+sort = rf.feature_importances_.argsort()
+plt.barh(boston.feature_names[sort], rf.feature_importances_[sort])
+plt.xlabel("Feature Importance")
+```
+
+RM is the average number of rooms per dwelling and it can be seen above that it is the most important feature in predicting the target variable.
+
+Feature Importance with Gradio
+-
+
+Gradio is a beautiful package that helps create simple and interactive interfaces for machine learning models. With Gradio, you can evaluate and test your model in real time. An interesting thing about Gradio is that it calculates the feature importance with a single parameter and we can interact with the features to see how it affects feature importance.
+<br>
+Here’s an example:
+<br>
+First, we’ll import all the required libraries and our dataset. In this example, I will be using the [iris dataset](https://www.kaggle.com/datasets/vikrishnan/iris-dataset) from the Seaborn library.
+
+Then we’ll split the dataset and fit it on the model.
+
+```py
+from sklearn.model_selection import train_test_split
+X=iris.drop("species",axis=1)
+y=iris["species"]
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25)
+
+from sklearn.svm import SVC
+model = SVC(probability=True)
+model.fit(X_train,y_train)
+```
+
+We’ll also create a prediction function that will be used in our Gradio interface.
+
+```
+def predict_flower(sepal_length, sepal_width, petal_length, petal_width):
+   df = pd.DataFrame.from_dict({'Sepal Length':[sepal_length],
+                                'Sepal Width': [sepal_width],
+                                'Petal Length': [petal_length],  
+                                'Petal Width': [petal_width]})
+   predict = model.predict_proba(df)[0]
+   return {model.classes_[i]: predict[i] for i in range(3)}
+```
+
+Finally, we’ll install Gradio with Pip and create our Interface.
+
+```py
+# Installing and importing Gradio
+!pip install gradio
+import gradio as gr
+sepal_length = gr.inputs.Slider(minimum=0, maximum=10, default=5, label="sepal_length")
+sepal_width = gr.inputs.Slider(minimum=0, maximum=10, default=5, label="sepal_width")
+petal_length = gr.inputs.Slider(minimum=0, maximum=10, default=5, label="petal_length")
+petal_width = gr.inputs.Slider(minimum=0, maximum=10, default=5, label="petal_width")
+gr.Interface(predict_flower, [sepal_length, sepal_width, petal_length, petal_width], "label", live=True, interpretation="default").launch(debug=True)
+```
+
+Output description
+
+```
+The legend tells you how changing that feature will affect the output. So increasing petal length and petal width will increase the confidence in the virginica class. Petal length is more “important” only in the sense that increasing petal length gets you “redder” (more confident) faster.
+```
+
+> [Terence Shin](https://www.linkedin.com/in/terenceshin/)
+
 # TO:DO<!-- Add mutual information notes to note book -->
 5. risk
 6. mutual-info
