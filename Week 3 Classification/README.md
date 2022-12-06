@@ -267,6 +267,29 @@ where:
 - n=Number of observations
 ​
 
+[One-hot encoding](https://en.wikipedia.org/wiki/One-hot)
+=
+
+In machine learning, one-hot encoding is a frequently used method to deal with categorical data. Because many machine learning models need their input variables to be numeric, categorical variables need to be transformed in the pre-processing part. <br>
+Categorical data can be either nominal or ordinal:
+- Ordinal data has a ranked order for its values and can therefore be converted to numerical data through ordinal encoding eg play store ratings
+- Nominal data is data that can be labelled or classified into mutually exclusive categories within a variable. For example, for the nominal variable of preferred mode of transportation, you may have the categories of car, bus, train, tram or bicycle. A nominal category or a nominal group is a group of objects or ideas that can be collectively grouped on the basis of a particular characteristic—a qualitative property.
+
+For each unique value in the original categorical column, a new column is created in this method. These dummy variables are then filled up with zeros and ones 
+
+```py
+from sklearn.preprocessing import OneHotEncoder
+```
+
+[Sparse matrix](https://en.wikipedia.org/wiki/Sparse_matrix)
+-
+
+
+In numerical analysis and scientific computing, a sparse matrix or sparse array is a matrix in which most of the elements are zero.[1] There is no strict definition regarding the proportion of zero-value elements for a matrix to qualify as sparse but a common criterion is that the number of non-zero elements is roughly equal to the number of rows or columns. By contrast, if most of the elements are non-zero, the matrix is considered dense.[1] The number of zero-valued elements divided by the total number of elements (e.g., m × n for an m × n matrix) is sometimes referred to as the sparsity of the matrix.
+
+[Sparse matrices (scipy.sparse)](https://docs.scipy.org/doc/scipy/reference/sparse.html#sparse-matrix-classes)<br>
+SciPy 2-D sparse array package for numeric data.
+
 # TO:DO<!-- Add mutual information notes to note book -->
 5. risk
 6. mutual-info
