@@ -4,7 +4,7 @@ BINARY CLASSIFICATION
 CHURN PREDICTION
 -
 
-$ g(x_i) ≈ y_i $
+$ g{(x_i)} ≈ y_i $
 
 Target variable -> $y_i$
 Feature vector describing the ith customer -> $x_i$
@@ -220,7 +220,52 @@ Output description
 The legend tells you how changing that feature will affect the output. So increasing petal length and petal width will increase the confidence in the virginica class. Petal length is more “important” only in the sense that increasing petal length gets you “redder” (more confident) faster.
 ```
 
-> [Terence Shin](https://www.linkedin.com/in/terenceshin/)
+> [Terence Shin](https://www.linkedin.com/in/terenceshin/) [Understanding Feature Importance and How to Implement it in Python](https://towardsdatascience.com/understanding-feature-importance-and-how-to-implement-it-in-python-ff0287b20285#:~:text=Feature%20Importance%20refers%20to%20techniques,to%20predict%20a%20certain%20variable.)
+
+
+[Feature Importance Correlation Coefficient]()
+=
+
+The correlation coefficient is a statistical measure of the strength of a linear relationship between two variables. Its values can range from -1 to 1. A correlation coefficient of -1 describes a perfect negative, or inverse, correlation, with values in one series rising as those in the other decline, and vice versa. A coefficient of 1 shows a perfect positive correlation, or a direct relationship. A correlation coefficient of 0 means there is no linear relationship.
+<br>
+Correlation coefficients are used in science and in finance to assess the degree of association between two variables, factors, or data sets. For example, since high oil prices are favorable for crude producers, one might assume the correlation between oil prices and forward returns on oil stocks is strongly positive. Calculating the correlation coefficient for these variables based on market data reveals a moderate and inconsistent correlation over lengthy periods.
+<br>
+
+Understanding the Correlation Coefficient
+-
+
+Different types of correlation coefficients are used to assess correlation based on the properties of the compared data. By far the most common is the Pearson coefficient, or Pearson's r, which measures the strength and direction of a linear relationship between two variables. The Pearson coefficient cannot assess nonlinear associations between variables and cannot differentiate between dependent and independent variables
+
+The Pearson coefficient uses a mathematical statistics formula to measure how closely the data points combining the two variables (with the values of one data series plotted on the x-axis and the corresponding values of the other series on the y-axis) approximate the line of best fit. The line of best fit can be determined through regression analysis.
+
+### Equations
+
+
+- Correlation Coefficient
+
+$$
+\rho_{xy} = \frac{{Cov}(x,y)}{{\sigma}_{x}{\sigma}_{y}}
+$$
+
+- $ \rho_{xy}$ - Pearson product-moment correlation coefficient
+- $ {Cov}(x,y) $ - covariance of variables x and y
+- $ {\sigma}_{x} $ - standard deviation of x
+- $ {\sigma}_{y} $ - standard deviation of y
+
+
+Standard deviation is a measure of the dispersion of data from its average. Covariance shows whether the two variables tend to move in the same direction, while the correlation coefficient measures the strength of that relationship on a normalized scale, from -1 to 1.
+<br>
+
+The formula above can be elaborated as
+<br>
+$
+r = \frac{n \ * \ (\sum{(X,Y)}) \ - \ (\sum(X) \ * \ \sum(Y))}{\sqrt{(n \ \sum({X^2}) \ - \ \sum(X)^2) \ * \ (n \ * \ \sum(Y^2) - \sum(Y)^2)}}
+$
+
+where:
+- r=Correlation coefficient
+- n=Number of observations
+​
 
 # TO:DO<!-- Add mutual information notes to note book -->
 5. risk
